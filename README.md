@@ -1,6 +1,7 @@
 # Kendra API Builder
 
 * Current version: [saracen.kendra.org](http://saracen.kendra.org/)
+* SCM: https://github.com/kendrainitiative/kendra_api_builder
 
 ### Contributors:
 
