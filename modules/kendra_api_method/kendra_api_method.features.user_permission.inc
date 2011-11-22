@@ -3,7 +3,7 @@
 /**
  * Implementation of hook_user_default_permissions().
  */
-function kendra_api_method_user_default_permissions() {
+function kendra_api_methods_user_default_permissions() {
   $permissions = array();
 
   // Exported permission: create method content
