@@ -96,6 +96,12 @@ function kendra_api_schema_context_default_contexts() {
           'region' => 'header',
           'weight' => 0,
         ),
+        'menu-secondary-links' => array(
+          'module' => 'menu',
+          'delta' => 'secondary-links',
+          'region' => 'footer',
+          'weight' => 0,
+        ),
       ),
     ),
   );

@@ -3,7 +3,7 @@
 /**
  * Implementation of hook_conditional_fields_default_fields().
  */
-function kendra_api_methods_conditional_fields_default_fields() {
+function kendra_api_method_conditional_fields_default_fields() {
 $items = array();
 $items[] = array (
   'control_field_name' => 'field_rest_http_method',

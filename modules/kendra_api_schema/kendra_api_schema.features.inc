@@ -31,7 +31,7 @@ function kendra_api_schema_node_info() {
       'module' => 'features',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Schema name'),
+      'title_label' => t('Title'),
       'has_body' => '0',
       'body_label' => '',
       'min_word_count' => '0',

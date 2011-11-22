@@ -236,11 +236,11 @@ function kendra_api_schema_views_default_views() {
 
   $views[$view->name] = $view;
 
-  // Exported view: container_attributes
+  // Exported view: attributes
   $view = new view;
-  $view->name = 'container_attributes';
-  $view->description = 'Container attributes';
-  $view->tag = '';
+  $view->name = 'attributes';
+  $view->description = 'attributes';
+  $view->tag = 'attributes';
   $view->view_php = '';
   $view->base_table = 'node';
   $view->is_cacheable = FALSE;
@@ -262,6 +262,39 @@ function kendra_api_schema_views_default_views() {
     ),
   ));
   $handler->override_option('fields', array(
+    'edit_node' => array(
+      'label' => 'Edit link',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'text' => '',
+      'exclude' => 0,
+      'id' => 'edit_node',
+      'table' => 'node',
+      'field' => 'edit_node',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
     'title' => array(
       'label' => 'title',
       'alter' => array(
@@ -318,7 +351,7 @@ function kendra_api_schema_views_default_views() {
       'empty' => '',
       'hide_empty' => 0,
       'empty_zero' => 0,
-      'link_to_node' => 0,
+      'link_to_node' => 1,
       'label_type' => 'custom',
       'format' => 'plain',
       'multiple' => array(
@@ -357,6 +390,785 @@ function kendra_api_schema_views_default_views() {
         'strip_tags' => 0,
       ),
       'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'custom',
+      'format' => 'plain',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_attribute_type_nid',
+      'table' => 'node_data_field_attribute_type',
+      'field' => 'field_attribute_type_nid',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_default_value' => array(
+      'label' => 'default',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '25',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'custom',
+      'format' => 'plain',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_attribute_default_value',
+      'table' => 'node_data_field_attribute_default',
+      'field' => 'field_attribute_default_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_allowed_value' => array(
+      'label' => 'enum',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '25',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 1,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'custom',
+      'format' => 'plain',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_attribute_allowed_value',
+      'table' => 'node_data_field_attribute_allowed',
+      'field' => 'field_attribute_allowed_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_desc_value' => array(
+      'label' => 'description',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '25',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'custom',
+      'format' => 'plain',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_attribute_desc_value',
+      'table' => 'node_data_field_attribute_desc',
+      'field' => 'field_attribute_desc_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_min_value' => array(
+      'label' => 'minItems',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'custom',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_attribute_min_value',
+      'table' => 'node_data_field_attribute_min',
+      'field' => 'field_attribute_min_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_max_value' => array(
+      'label' => 'maxItems',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'custom',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_attribute_max_value',
+      'table' => 'node_data_field_attribute_max',
+      'field' => 'field_attribute_max_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_min_value_1' => array(
+      'label' => 'required',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 1,
+        'max_length' => '1',
+        'word_boundary' => 0,
+        'ellipsis' => 0,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'custom',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_attribute_min_value_1',
+      'table' => 'node_data_field_attribute_min',
+      'field' => 'field_attribute_min_value',
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_privacy_value' => array(
+      'label' => 'privacy',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'custom',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_attribute_privacy_value',
+      'table' => 'node_data_field_attribute_privacy',
+      'field' => 'field_attribute_privacy_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_status_value' => array(
+      'label' => 'status',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'custom',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_attribute_status_value',
+      'table' => 'node_data_field_attribute_status',
+      'field' => 'field_attribute_status_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'field_container_id_value' => array(
+      'order' => 'ASC',
+      'delta' => -1,
+      'id' => 'field_container_id_value',
+      'table' => 'node_data_field_container_id',
+      'field' => 'field_container_id_value',
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_id_value' => array(
+      'order' => 'ASC',
+      'delta' => -1,
+      'id' => 'field_attribute_id_value',
+      'table' => 'node_data_field_attribute_id',
+      'field' => 'field_attribute_id_value',
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'title' => array(
+      'order' => 'ASC',
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('arguments', array(
+    'nid' => array(
+      'default_action' => 'default',
+      'style_plugin' => 'default_summary',
+      'style_options' => array(),
+      'wildcard' => 'all',
+      'wildcard_substitution' => 'All',
+      'title' => '',
+      'breadcrumb' => '',
+      'default_argument_type' => 'node',
+      'default_argument' => '',
+      'validate_type' => 'node',
+      'validate_fail' => 'ignore',
+      'break_phrase' => 0,
+      'not' => 0,
+      'id' => 'nid',
+      'table' => 'node',
+      'field' => 'nid',
+      'validate_user_argument_type' => 'uid',
+      'validate_user_roles' => array(
+        '2' => 0,
+        '3' => 0,
+      ),
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+      'default_options_div_prefix' => '',
+      'default_argument_user' => 0,
+      'default_argument_fixed' => '',
+      'default_argument_php' => '',
+      'validate_argument_node_type' => array(
+        'container' => 'container',
+        'attribute' => 0,
+        'method' => 0,
+        'use_case' => 0,
+      ),
+      'validate_argument_node_access' => 0,
+      'validate_argument_nid_type' => 'nid',
+      'validate_user_restrict_roles' => 0,
+      'validate_argument_php' => '',
+      'validate_argument_vocabulary' => array(
+        '2' => 0,
+        '3' => 0,
+        '1' => 0,
+      ),
+      'validate_argument_type' => 'tid',
+      'validate_argument_transform' => 0,
+    ),
+  ));
+  $handler->override_option('filters', array(
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'attribute' => 'attribute',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('access', array(
+    'type' => 'role',
+    'role' => array(
+      '3' => 3,
+    ),
+  ));
+  $handler->override_option('cache', array(
+    'type' => 'time',
+    'results_lifespan' => 3600,
+    'output_lifespan' => 3600,
+  ));
+  $handler->override_option('title', 'Attributes');
+  $handler->override_option('header_format', '2');
+  $handler->override_option('header_empty', 0);
+  $handler->override_option('empty', 'No attributes');
+  $handler->override_option('empty_format', '1');
+  $handler->override_option('use_ajax', TRUE);
+  $handler->override_option('items_per_page', 0);
+  $handler->override_option('link_display', 'page_3');
+  $handler->override_option('style_plugin', 'table');
+  $handler = $view->new_display('page', 'Attributes VBO', 'page_4');
+  $handler->override_option('relationships', array());
+  $handler->override_option('filters', array(
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'attribute' => 'attribute',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('style_plugin', 'bulk');
+  $handler->override_option('style_options', array(
+    'grouping' => 'field_container_id_value',
+    'override' => 1,
+    'sticky' => 0,
+    'order' => 'asc',
+    'columns' => array(
+      'edit_node' => 'edit_node',
+      'title' => 'title',
+      'field_attribute_id_value' => 'field_attribute_id_value',
+      'field_attribute_type_nid' => 'field_attribute_type_nid',
+      'field_attribute_default_value' => 'field_attribute_default_value',
+      'field_attribute_allowed_value' => 'field_attribute_allowed_value',
+      'field_attribute_desc_value' => 'field_attribute_desc_value',
+      'field_attribute_min_value' => 'field_attribute_min_value',
+      'field_attribute_max_value' => 'field_attribute_max_value',
+      'field_attribute_min_value_1' => 'field_attribute_min_value_1',
+      'field_attribute_privacy_value' => 'field_attribute_privacy_value',
+      'field_attribute_status_value' => 'field_attribute_status_value',
+      'field_container_id_value' => 'field_container_id_value',
+    ),
+    'info' => array(
+      'edit_node' => array(
+        'separator' => '',
+      ),
+      'title' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_id_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_type_nid' => array(
+        'separator' => '',
+      ),
+      'field_attribute_default_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_allowed_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_desc_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_min_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_max_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_min_value_1' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_privacy_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_status_value' => array(
+        'separator' => '',
+      ),
+      'field_container_id_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+    ),
+    'default' => '-1',
+    'execution_type' => '1',
+    'display_type' => '0',
+    'hide_select_all' => 0,
+    'skip_confirmation' => 0,
+    'display_result' => 1,
+    'merge_single_action' => 1,
+    'selected_operations' => array(
+      'views_bulk_operations_fields_action' => 'views_bulk_operations_fields_action',
+      'node_mass_update:9c585624b9b3af0b4687d5f97f35e047' => 'node_mass_update:9c585624b9b3af0b4687d5f97f35e047',
+      'node_unpublish_action' => 'node_unpublish_action',
+      'auto_nodetitle_operations_update' => 'auto_nodetitle_operations_update',
+      'pathauto_node_update_alias_multiple:620e193b20ba9caa374fea9ca0ad38f0' => 'pathauto_node_update_alias_multiple:620e193b20ba9caa374fea9ca0ad38f0',
+      'node_assign_owner_action' => 0,
+      'views_bulk_operations_delete_node_action' => 0,
+      'node_mass_update:a27b9efabcd054685a549378b174ad11' => 0,
+      'system_message_action' => 0,
+      'views_bulk_operations_ruleset_action_rules_set_1' => 0,
+      'views_bulk_operations_action' => 0,
+      'views_bulk_operations_script_action' => 0,
+      'node_make_sticky_action' => 0,
+      'node_make_unsticky_action' => 0,
+      'node_mass_update:c4d3b28efb86fd703619a50b74d43794' => 0,
+      'views_bulk_operations_taxonomy_action' => 0,
+      'views_bulk_operations_argument_selector_action' => 0,
+      'node_promote_action' => 0,
+      'node_mass_update:14de7d028b4bffdf2b4a266562ca18ac' => 0,
+      'node_publish_action' => 0,
+      'system_goto_action' => 0,
+      'node_unpromote_action' => 0,
+      'node_mass_update:8ce21b08bb8e773d10018b484fe4815e' => 0,
+      'node_save_action' => 0,
+      'system_send_email_action' => 0,
+      'node_mass_update:0ccad85c1ebe4c9ceada1aa64293b080' => 0,
+      'node_unpublish_by_keyword_action' => 0,
+    ),
+    'views_bulk_operations_fields_action' => array(
+      'php_code' => 0,
+      'display_fields' => array(
+        '_all_' => '_all_',
+      ),
+      '_error_element_base' => 'style_options][views_bulk_operations_fields_action][',
+    ),
+  ));
+  $handler->override_option('path', 'attributes-VBO');
+  $handler->override_option('menu', array(
+    'type' => 'none',
+    'title' => 'Attributes VBO',
+    'description' => '',
+    'weight' => '0',
+    'name' => 'secondary-links',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+  $handler = $view->new_display('block', 'Block', 'block_1');
+  $handler->override_option('block_description', '');
+  $handler->override_option('block_caching', -1);
+
+  $views[$view->name] = $view;
+
+  // Exported view: container_attributes
+  $view = new view;
+  $view->name = 'container_attributes';
+  $view->description = 'Container attributes';
+  $view->tag = '';
+  $view->view_php = '';
+  $view->base_table = 'node';
+  $view->is_cacheable = FALSE;
+  $view->api_version = 2;
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('relationships', array(
+    'field_container_attribute_nid' => array(
+      'label' => 'Attributes',
+      'required' => 1,
+      'delta' => '-1',
+      'id' => 'field_container_attribute_nid',
+      'table' => 'node_data_field_container_attribute',
+      'field' => 'field_container_attribute_nid',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('fields', array(
+    'edit_node' => array(
+      'label' => 'Edit link',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'text' => '',
+      'exclude' => 0,
+      'id' => 'edit_node',
+      'table' => 'node',
+      'field' => 'edit_node',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'title' => array(
+      'label' => 'title',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_id_value' => array(
+      'label' => 'id',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'label_type' => 'custom',
+      'format' => 'plain',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_attribute_id_value',
+      'table' => 'node_data_field_attribute_id',
+      'field' => 'field_attribute_id_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_type_nid' => array(
+      'label' => 'Type',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 1,
+        'path' => 'containers/[field_attribute_type_nid]',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => 'undefined',
       'hide_empty' => 0,
       'empty_zero' => 0,
       'link_to_node' => 0,
@@ -825,35 +1637,18 @@ function kendra_api_schema_views_default_views() {
       'validate_argument_transform' => 0,
     ),
   ));
-  $handler->override_option('filters', array(
-    'field_attribute_type_nid' => array(
-      'operator' => 'not empty',
-      'value' => array(),
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'field_attribute_type_nid',
-      'table' => 'node_data_field_attribute_type',
-      'field' => 'field_attribute_type_nid',
-      'override' => array(
-        'button' => 'Override',
-      ),
-      'relationship' => 'field_container_attribute_nid',
-      'reduce_duplicates' => 0,
-    ),
-  ));
   $handler->override_option('access', array(
-    'type' => 'none',
+    'type' => 'role',
+    'role' => array(
+      '3' => 3,
+    ),
   ));
   $handler->override_option('cache', array(
     'type' => 'time',
-    'results_lifespan' => '1800',
+    'results_lifespan' => '-1',
     'output_lifespan' => '-1',
   ));
-  $handler->override_option('title', 'Attributes');
+  $handler->override_option('title', 'Attributes, by Container');
   $handler->override_option('header_format', '2');
   $handler->override_option('header_empty', 0);
   $handler->override_option('empty', 'No attributes');
@@ -863,11 +1658,12 @@ function kendra_api_schema_views_default_views() {
   $handler->override_option('link_display', 'page_3');
   $handler->override_option('style_plugin', 'table');
   $handler->override_option('style_options', array(
-    'grouping' => 'field_container_id_value',
+    'grouping' => '',
     'override' => 1,
     'sticky' => 0,
     'order' => 'asc',
     'columns' => array(
+      'edit_node' => 'edit_node',
       'title' => 'title',
       'field_attribute_id_value' => 'field_attribute_id_value',
       'field_attribute_type_nid' => 'field_attribute_type_nid',
@@ -876,11 +1672,15 @@ function kendra_api_schema_views_default_views() {
       'field_attribute_desc_value' => 'field_attribute_desc_value',
       'field_attribute_min_value' => 'field_attribute_min_value',
       'field_attribute_max_value' => 'field_attribute_max_value',
+      'field_attribute_min_value_1' => 'field_attribute_min_value_1',
       'field_attribute_privacy_value' => 'field_attribute_privacy_value',
       'field_attribute_status_value' => 'field_attribute_status_value',
       'field_container_id_value' => 'field_container_id_value',
     ),
     'info' => array(
+      'edit_node' => array(
+        'separator' => '',
+      ),
       'title' => array(
         'sortable' => 1,
         'separator' => '',
@@ -893,11 +1693,11 @@ function kendra_api_schema_views_default_views() {
         'separator' => '',
       ),
       'field_attribute_default_value' => array(
-        'sortable' => 0,
+        'sortable' => 1,
         'separator' => '',
       ),
       'field_attribute_allowed_value' => array(
-        'sortable' => 0,
+        'sortable' => 1,
         'separator' => '',
       ),
       'field_attribute_desc_value' => array(
@@ -912,6 +1712,10 @@ function kendra_api_schema_views_default_views() {
         'sortable' => 1,
         'separator' => '',
       ),
+      'field_attribute_min_value_1' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
       'field_attribute_privacy_value' => array(
         'sortable' => 1,
         'separator' => '',
@@ -920,13 +1724,86 @@ function kendra_api_schema_views_default_views() {
         'separator' => '',
       ),
       'field_container_id_value' => array(
-        'sortable' => 0,
+        'sortable' => 1,
         'separator' => '',
       ),
     ),
-    'default' => '-1',
+    'default' => 'field_attribute_id_value',
   ));
   $handler = $view->new_display('block', 'Block', 'block_1');
+  $handler->override_option('style_options', array(
+    'grouping' => 'field_container_id_value',
+    'override' => 1,
+    'sticky' => 0,
+    'order' => 'asc',
+    'columns' => array(
+      'edit_node' => 'edit_node',
+      'title' => 'title',
+      'field_attribute_id_value' => 'field_attribute_id_value',
+      'field_attribute_type_nid' => 'field_attribute_type_nid',
+      'field_attribute_default_value' => 'field_attribute_default_value',
+      'field_attribute_allowed_value' => 'field_attribute_allowed_value',
+      'field_attribute_desc_value' => 'field_attribute_desc_value',
+      'field_attribute_min_value' => 'field_attribute_min_value',
+      'field_attribute_max_value' => 'field_attribute_max_value',
+      'field_attribute_min_value_1' => 'field_attribute_min_value_1',
+      'field_attribute_privacy_value' => 'field_attribute_privacy_value',
+      'field_attribute_status_value' => 'field_attribute_status_value',
+      'field_container_id_value' => 'field_container_id_value',
+    ),
+    'info' => array(
+      'edit_node' => array(
+        'separator' => '',
+      ),
+      'title' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_id_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_type_nid' => array(
+        'separator' => '',
+      ),
+      'field_attribute_default_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_allowed_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_desc_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_min_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_max_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_min_value_1' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_privacy_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_status_value' => array(
+        'separator' => '',
+      ),
+      'field_container_id_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+    ),
+    'default' => 'field_attribute_id_value',
+  ));
   $handler->override_option('block_description', 'Container attributes');
   $handler->override_option('block_caching', -1);
   $handler = $view->new_display('attachment', 'Attachment', 'attachment_1');
@@ -986,7 +1863,7 @@ function kendra_api_schema_views_default_views() {
     'description' => '',
   ));
   $handler->override_option('row_plugin', 'node_rss');
-  $handler->override_option('path', 'api/export/csv');
+  $handler->override_option('path', 'attributes.csv');
   $handler->override_option('menu', array(
     'type' => 'none',
     'title' => '',
@@ -1463,7 +2340,7 @@ function kendra_api_schema_views_default_views() {
     'relationship' => 'field_container_attribute_nid',
     'item_length' => 'fulltext',
   ));
-  $handler->override_option('path', 'api/export/xml ');
+  $handler->override_option('path', 'attributes.xml ');
   $handler->override_option('menu', array(
     'type' => 'none',
     'title' => '',
@@ -1496,7 +2373,7 @@ function kendra_api_schema_views_default_views() {
     'content_type' => 'default',
     'using_views_api_mode' => 0,
   ));
-  $handler->override_option('path', 'api/export/json');
+  $handler->override_option('path', 'attributes.json');
   $handler->override_option('menu', array(
     'type' => 'tab',
     'title' => 'JSON Schema',
@@ -1969,7 +2846,7 @@ function kendra_api_schema_views_default_views() {
     'author' => 'klokie',
     'using_views_api_mode' => 0,
   ));
-  $handler->override_option('path', 'api/export/rdf');
+  $handler->override_option('path', 'attributes.rdf');
   $handler->override_option('menu', array(
     'type' => 'none',
     'title' => '',
@@ -1985,7 +2862,662 @@ function kendra_api_schema_views_default_views() {
     'name' => 'navigation',
   ));
   $handler = $view->new_display('page', 'Page', 'page_3');
+  $handler->override_option('style_options', array(
+    'grouping' => 'field_container_id_value',
+    'override' => 1,
+    'sticky' => 0,
+    'order' => 'asc',
+    'columns' => array(
+      'edit_node' => 'edit_node',
+      'title' => 'title',
+      'field_attribute_id_value' => 'field_attribute_id_value',
+      'field_attribute_type_nid' => 'field_attribute_type_nid',
+      'field_attribute_default_value' => 'field_attribute_default_value',
+      'field_attribute_allowed_value' => 'field_attribute_allowed_value',
+      'field_attribute_desc_value' => 'field_attribute_desc_value',
+      'field_attribute_min_value' => 'field_attribute_min_value',
+      'field_attribute_max_value' => 'field_attribute_max_value',
+      'field_attribute_min_value_1' => 'field_attribute_min_value_1',
+      'field_attribute_privacy_value' => 'field_attribute_privacy_value',
+      'field_attribute_status_value' => 'field_attribute_status_value',
+      'field_container_id_value' => 'field_container_id_value',
+    ),
+    'info' => array(
+      'edit_node' => array(
+        'separator' => '',
+      ),
+      'title' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_id_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_type_nid' => array(
+        'separator' => '',
+      ),
+      'field_attribute_default_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_allowed_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_desc_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_attribute_min_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_max_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_min_value_1' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_privacy_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+      'field_attribute_status_value' => array(
+        'separator' => '',
+      ),
+      'field_container_id_value' => array(
+        'sortable' => 1,
+        'separator' => '',
+      ),
+    ),
+    'default' => 'field_attribute_id_value',
+  ));
   $handler->override_option('path', 'attributes');
+  $handler->override_option('menu', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+
+  $views[$view->name] = $view;
+
+  // Exported view: containers
+  $view = new view;
+  $view->name = 'containers';
+  $view->description = 'containers';
+  $view->tag = 'containers';
+  $view->view_php = '';
+  $view->base_table = 'node';
+  $view->is_cacheable = FALSE;
+  $view->api_version = 2;
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('fields', array(
+    'edit_node' => array(
+      'label' => 'Edit',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'text' => '',
+      'exclude' => 0,
+      'id' => 'edit_node',
+      'table' => 'node',
+      'field' => 'edit_node',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_schema_name_value' => array(
+      'label' => 'Schema name',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_schema_name_value',
+      'table' => 'node_data_field_schema_name',
+      'field' => 'field_schema_name_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_container_id_value' => array(
+      'label' => 'Instance Name',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_container_id_value',
+      'table' => 'node_data_field_container_id',
+      'field' => 'field_container_id_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_container_base_value' => array(
+      'label' => 'Is base',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_container_base_value',
+      'table' => 'node_data_field_container_base',
+      'field' => 'field_container_base_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_container_isroot_value' => array(
+      'label' => 'Is root',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_container_isroot_value',
+      'table' => 'node_data_field_container_isroot',
+      'field' => 'field_container_isroot_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_container_source_url' => array(
+      'label' => 'Source URL',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_container_source_url',
+      'table' => 'node_data_field_container_source',
+      'field' => 'field_container_source_url',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_container_status_value' => array(
+      'label' => 'Status',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_container_status_value',
+      'table' => 'node_data_field_container_status',
+      'field' => 'field_container_status_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_container_release_value' => array(
+      'label' => 'Release number',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_container_release_value',
+      'table' => 'node_data_field_container_release',
+      'field' => 'field_container_release_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('sorts', array(
+    'field_container_id_value' => array(
+      'order' => 'ASC',
+      'delta' => -1,
+      'id' => 'field_container_id_value',
+      'table' => 'node_data_field_container_id',
+      'field' => 'field_container_id_value',
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'field_attribute_id_value' => array(
+      'order' => 'ASC',
+      'delta' => -1,
+      'id' => 'field_attribute_id_value',
+      'table' => 'node_data_field_attribute_id',
+      'field' => 'field_attribute_id_value',
+      'relationship' => 'field_container_attribute_nid',
+    ),
+    'title' => array(
+      'order' => 'ASC',
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('arguments', array(
+    'nid' => array(
+      'default_action' => 'default',
+      'style_plugin' => 'default_summary',
+      'style_options' => array(),
+      'wildcard' => 'all',
+      'wildcard_substitution' => 'All',
+      'title' => '',
+      'breadcrumb' => '',
+      'default_argument_type' => 'node',
+      'default_argument' => '',
+      'validate_type' => 'node',
+      'validate_fail' => 'ignore',
+      'break_phrase' => 0,
+      'not' => 0,
+      'id' => 'nid',
+      'table' => 'node',
+      'field' => 'nid',
+      'validate_user_argument_type' => 'uid',
+      'validate_user_roles' => array(
+        '2' => 0,
+        '3' => 0,
+      ),
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+      'default_options_div_prefix' => '',
+      'default_argument_user' => 0,
+      'default_argument_fixed' => '',
+      'default_argument_php' => '',
+      'validate_argument_node_type' => array(
+        'container' => 'container',
+        'attribute' => 0,
+        'method' => 0,
+        'use_case' => 0,
+      ),
+      'validate_argument_node_access' => 0,
+      'validate_argument_nid_type' => 'nid',
+      'validate_user_restrict_roles' => 0,
+      'validate_argument_php' => '',
+      'validate_argument_vocabulary' => array(
+        '2' => 0,
+        '3' => 0,
+        '1' => 0,
+      ),
+      'validate_argument_type' => 'tid',
+      'validate_argument_transform' => 0,
+    ),
+  ));
+  $handler->override_option('filters', array(
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'container' => 'container',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+  ));
+  $handler->override_option('access', array(
+    'type' => 'role',
+    'role' => array(
+      '3' => 3,
+    ),
+  ));
+  $handler->override_option('cache', array(
+    'type' => 'none',
+  ));
+  $handler->override_option('title', 'Containers');
+  $handler->override_option('header_format', '2');
+  $handler->override_option('header_empty', 0);
+  $handler->override_option('empty', 'No attributes');
+  $handler->override_option('empty_format', '1');
+  $handler->override_option('use_ajax', TRUE);
+  $handler->override_option('items_per_page', 0);
+  $handler->override_option('link_display', 'page_3');
+  $handler->override_option('style_plugin', 'table');
+  $handler = $view->new_display('page', 'Attributes VBO', 'page_4');
+  $handler->override_option('style_plugin', 'bulk');
+  $handler->override_option('style_options', array(
+    'grouping' => '',
+    'override' => 1,
+    'sticky' => 0,
+    'order' => 'asc',
+    'columns' => array(
+      'edit_node' => 'edit_node',
+      'title' => 'title',
+      'field_container_desc_value' => 'field_container_desc_value',
+      'field_container_id_value' => 'field_container_id_value',
+      'field_container_base_value' => 'field_container_base_value',
+      'field_container_isroot_value' => 'field_container_isroot_value',
+      'field_schema_name_value' => 'field_schema_name_value',
+      'field_container_source_url' => 'field_container_source_url',
+      'field_container_status_value' => 'field_container_status_value',
+    ),
+    'info' => array(
+      'edit_node' => array(
+        'separator' => '',
+      ),
+      'title' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_container_desc_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_container_id_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_container_base_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_container_isroot_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_schema_name_value' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_container_source_url' => array(
+        'sortable' => 0,
+        'separator' => '',
+      ),
+      'field_container_status_value' => array(
+        'separator' => '',
+      ),
+    ),
+    'default' => '-1',
+    'execution_type' => '1',
+    'display_type' => '0',
+    'hide_select_all' => 0,
+    'skip_confirmation' => 0,
+    'display_result' => 1,
+    'merge_single_action' => 1,
+    'selected_operations' => array(
+      'views_bulk_operations_fields_action' => 'views_bulk_operations_fields_action',
+      'node_mass_update:9c585624b9b3af0b4687d5f97f35e047' => 'node_mass_update:9c585624b9b3af0b4687d5f97f35e047',
+      'node_unpublish_action' => 'node_unpublish_action',
+      'auto_nodetitle_operations_update' => 'auto_nodetitle_operations_update',
+      'pathauto_node_update_alias_multiple:620e193b20ba9caa374fea9ca0ad38f0' => 'pathauto_node_update_alias_multiple:620e193b20ba9caa374fea9ca0ad38f0',
+      'node_assign_owner_action' => 0,
+      'views_bulk_operations_delete_node_action' => 0,
+      'node_mass_update:a27b9efabcd054685a549378b174ad11' => 0,
+      'system_message_action' => 0,
+      'views_bulk_operations_ruleset_action_rules_set_1' => 0,
+      'views_bulk_operations_action' => 0,
+      'views_bulk_operations_script_action' => 0,
+      'node_make_sticky_action' => 0,
+      'node_make_unsticky_action' => 0,
+      'node_mass_update:c4d3b28efb86fd703619a50b74d43794' => 0,
+      'views_bulk_operations_taxonomy_action' => 0,
+      'views_bulk_operations_argument_selector_action' => 0,
+      'node_promote_action' => 0,
+      'node_mass_update:14de7d028b4bffdf2b4a266562ca18ac' => 0,
+      'node_publish_action' => 0,
+      'system_goto_action' => 0,
+      'node_unpromote_action' => 0,
+      'node_mass_update:8ce21b08bb8e773d10018b484fe4815e' => 0,
+      'node_save_action' => 0,
+      'system_send_email_action' => 0,
+      'node_mass_update:0ccad85c1ebe4c9ceada1aa64293b080' => 0,
+      'node_unpublish_by_keyword_action' => 0,
+    ),
+    'views_bulk_operations_fields_action' => array(
+      'php_code' => 0,
+      'display_fields' => array(
+        '_all_' => '_all_',
+      ),
+      '_error_element_base' => 'style_options][views_bulk_operations_fields_action][',
+    ),
+  ));
+  $handler->override_option('path', 'containers-VBO');
+  $handler->override_option('menu', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'description' => '',
+    'weight' => 0,
+    'name' => 'navigation',
+  ));
+  $handler = $view->new_display('page', 'Containers', 'page_1');
+  $handler->override_option('path', 'containers');
   $handler->override_option('menu', array(
     'type' => 'none',
     'title' => '',
@@ -2114,7 +3646,7 @@ function kendra_api_schema_views_default_views() {
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('fields', array(
-    'title' => array(
+    'field_schema_name_value' => array(
       'label' => 'Schema name',
       'alter' => array(
         'alter_text' => 0,
@@ -2138,22 +3670,71 @@ function kendra_api_schema_views_default_views() {
       'hide_empty' => 0,
       'empty_zero' => 0,
       'link_to_node' => 1,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
       'exclude' => 0,
-      'id' => 'title',
-      'table' => 'node',
-      'field' => 'title',
+      'id' => 'field_schema_name_value',
+      'table' => 'node_data_field_schema_name',
+      'field' => 'field_schema_name_value',
       'override' => array(
         'button' => 'Override',
       ),
       'relationship' => 'none',
     ),
     'field_container_id_value' => array(
-      'label' => 'Container ID',
+      'label' => 'Instance Name',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
         'make_link' => 0,
         'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'link_to_node' => 1,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_container_id_value',
+      'table' => 'node_data_field_container_id',
+      'field' => 'field_container_id_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'field_rest_uri_fragment_value' => array(
+      'label' => 'REST URI Fragment',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 1,
+        'path' => 'http://api.kendra.org/saracen/0.1[field_rest_uri_fragment_value]',
         'link_class' => '',
         'alt' => '',
         'prefix' => '',
@@ -2180,9 +3761,9 @@ function kendra_api_schema_views_default_views() {
         'multiple_reversed' => FALSE,
       ),
       'exclude' => 0,
-      'id' => 'field_container_id_value',
-      'table' => 'node_data_field_container_id',
-      'field' => 'field_container_id_value',
+      'id' => 'field_rest_uri_fragment_value',
+      'table' => 'node_data_field_rest_uri_fragment',
+      'field' => 'field_rest_uri_fragment_value',
       'override' => array(
         'button' => 'Override',
       ),
@@ -2213,7 +3794,7 @@ function kendra_api_schema_views_default_views() {
       'empty_zero' => 0,
       'link_to_node' => 0,
       'label_type' => 'widget',
-      'format' => 'plain',
+      'format' => 'default',
       'multiple' => array(
         'group' => TRUE,
         'multiple_number' => '',
@@ -2375,7 +3956,7 @@ function kendra_api_schema_views_default_views() {
       'empty' => '',
       'hide_empty' => 0,
       'empty_zero' => 0,
-      'date_format' => 'large',
+      'date_format' => 'time ago',
       'custom_date_format' => '',
       'exclude' => 0,
       'id' => 'changed',
@@ -2462,11 +4043,15 @@ function kendra_api_schema_views_default_views() {
       'field' => 'field_container_isroot_value',
       'relationship' => 'none',
     ),
-    'title' => array(
+    'field_schema_name_value' => array(
       'order' => 'ASC',
-      'id' => 'title',
-      'table' => 'node',
-      'field' => 'title',
+      'delta' => -1,
+      'id' => 'field_schema_name_value',
+      'table' => 'node_data_field_schema_name',
+      'field' => 'field_schema_name_value',
+      'override' => array(
+        'button' => 'Override',
+      ),
       'relationship' => 'none',
     ),
   ));
@@ -2532,10 +4117,16 @@ function kendra_api_schema_views_default_views() {
     ),
   ));
   $handler->override_option('access', array(
-    'type' => 'none',
+    'type' => 'role',
+    'role' => array(
+      '3' => 3,
+      '2' => 2,
+    ),
   ));
   $handler->override_option('cache', array(
-    'type' => 'none',
+    'type' => 'time',
+    'results_lifespan' => '-1',
+    'output_lifespan' => '-1',
   ));
   $handler->override_option('title', 'Kendra Saracen Metadata API Schemas');
   $handler->override_option('items_per_page', 0);
@@ -2546,7 +4137,7 @@ function kendra_api_schema_views_default_views() {
     'sticky' => 1,
     'order' => 'asc',
     'columns' => array(
-      'title' => 'title',
+      'field_schema_name_value' => 'field_schema_name_value',
       'field_container_id_value' => 'field_container_id_value',
       'field_container_desc_value' => 'field_container_desc_value',
       'field_container_privacy_value' => 'field_container_privacy_value',
@@ -2557,12 +4148,12 @@ function kendra_api_schema_views_default_views() {
       'view_node' => 'view_node',
     ),
     'info' => array(
-      'title' => array(
+      'field_schema_name_value' => array(
         'sortable' => 1,
         'separator' => '',
       ),
       'field_container_id_value' => array(
-        'sortable' => 0,
+        'sortable' => 1,
         'separator' => '',
       ),
       'field_container_desc_value' => array(
@@ -2590,7 +4181,7 @@ function kendra_api_schema_views_default_views() {
         'separator' => '',
       ),
     ),
-    'default' => 'title',
+    'default' => 'field_schema_name_value',
   ));
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->override_option('path', 'schemas');

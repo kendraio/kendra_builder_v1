@@ -3,7 +3,7 @@
 /**
  * Implementation of hook_node_info().
  */
-function kendra_api_methods_node_info() {
+function kendra_api_method_node_info() {
   $items = array(
     'method' => array(
       'name' => t('Method'),
@@ -23,7 +23,7 @@ function kendra_api_methods_node_info() {
 /**
  * Implementation of hook_views_api().
  */
-function kendra_api_methods_views_api() {
+function kendra_api_method_views_api() {
   return array(
     'api' => '2',
   );

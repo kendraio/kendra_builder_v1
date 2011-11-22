@@ -3,7 +3,7 @@
 /**
  * Implementation of hook_fieldgroup_default_groups().
  */
-function kendra_api_methods_fieldgroup_default_groups() {
+function kendra_api_method_fieldgroup_default_groups() {
   $groups = array();
 
   // Exported group: group_request

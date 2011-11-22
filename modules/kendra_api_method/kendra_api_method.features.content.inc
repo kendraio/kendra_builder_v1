@@ -3,7 +3,7 @@
 /**
  * Implementation of hook_content_default_fields().
  */
-function kendra_api_methods_content_default_fields() {
+function kendra_api_method_content_default_fields() {
   $fields = array();
 
   // Exported field: field_method_desc

@@ -3,7 +3,7 @@
 /**
  * Implementation of hook_views_default_views().
  */
-function kendra_api_methods_views_default_views() {
+function kendra_api_method_views_default_views() {
   $views = array();
 
   // Exported view: methods
