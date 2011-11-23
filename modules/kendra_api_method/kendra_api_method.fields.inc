@@ -1,20 +1,26 @@
 <?php
 
 /**
- * given a node ID, get the title of a referenced node
+ * given a node ID, get the values for a list of fields from a referenced node
  * @param INT $nid
  * @return String title
  */
-function computed_field_get_noderef_referenced_title ($nid = 0) {
+function computed_field_get_noderef_referenced_fields ($nid = 0, $fields = array()) {
 	$node = node_load($nid);
-	watchdog('debug', 'Node = <pre>'. print_r($node, TRUE) .'</pre>');
-	$value = $node->title;
-	return $value;
+	//watchdog('debug', 'Node = <pre>'. print_r($node, TRUE) .'</pre>');
+
+	$out = array();
+	foreach($fields as $fieldname) {
+		if (property_exists($node, $fieldname)) {
+			$out[$fieldname] = $node->{$fieldname};
+		}
+	}
+	return $out;
 }
 
 function kendra_api_method_get_safe_param_example ($label = 'foo') {
-	$safe_name = preg_replace('/[^\w]/', '_', $label);
-	return $safe_name;
+	$safe_title = preg_replace('/[^\w]/', '_', $label);
+	return $safe_title;
 }
 
 /**
@@ -41,10 +47,15 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     if ($method == 'GET') {
     	foreach($node->field_method_params as $i => $param) {
     		$nid = $param['nid'];
-    		$value = computed_field_get_noderef_referenced_title($nid);
-    		if (!empty($value)) {
-    			$safe_name = kendra_api_method_get_safe_param_example($value);
-    			$data[] = $safe_name . '=' . current($placeholders);
+    		$fields = computed_field_get_noderef_referenced_fields($nid, array('title', 'type'));
+    		if (isset($fields['title'])) {
+    			if ($fields['type'] == 'attribute') {
+    				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
+    				$data[] = $safe_title . '=' . current($placeholders);
+    			} else {
+    				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
+    				$data[] = $safe_title . '=' . current($placeholders);
+    			}
     			next($placeholders);
     		}
     	}
@@ -54,10 +65,15 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     } else if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
     	foreach($node->field_method_params as $i => $param) {
     		$nid = $param['nid'];
-    		$value = computed_field_get_noderef_referenced_title($nid);
-    		if (!empty($value)) {
-    			$safe_name = kendra_api_method_get_safe_param_example($value);
-    			$data[] = $safe_name . '=' . current($placeholders);
+    		$fields = computed_field_get_noderef_referenced_fields($nid, array('title', 'type'));
+    		if (isset($fields['title'])) {
+    			if ($fields['type'] == 'attribute') {
+    				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
+    				$data[] = $safe_title . '=' . current($placeholders);
+    			} else {
+    				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
+    				$data[] = $safe_title . '=' . '{}';
+    			}
     			next($placeholders);
     		}
     	}
@@ -87,22 +103,28 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 
 	foreach($node->field_method_params as $i => $param) {
 		$nid = $node->field_method_params[$i]['nid'];
-		$value = computed_field_get_noderef_referenced_title($nid);
-		if (!empty($value)) {
-			$safe_name = kendra_api_method_get_safe_param_example($value);
-			$data[] = $safe_name . '=' . current($placeholders);
+		$fields = computed_field_get_noderef_referenced_fields($nid, array('title', 'type'));
+		if (isset($fields['title'])) {
+			if ($fields['type'] == 'attribute') {
+				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
+				$data[] = $safe_title . '=' . current($placeholders);
+			} else {
+				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
+				$data[] = $safe_title . '=' . '{}';
+			}
 			next($placeholders);
 		}
 	}
+}
 
-	$url .= join('&',
-	array(
+$url .= join('&',
+array(
         'endpoint_method='.$node->field_rest_http_method[0]['value']
-	,'endpoint_path=' . $url_path_prefix . $node->field_rest_uri_fragment[0]['value']
-	,'endpoint_data=' . urlencode(join('&', $data))
-	));
+,'endpoint_path=' . $url_path_prefix . $node->field_rest_uri_fragment[0]['value']
+,'endpoint_data=' . urlencode(join('&', $data))
+));
 
-	$node_field[0]['value'] = $url;
+$node_field[0]['value'] = $url;
 }
 
 /**
