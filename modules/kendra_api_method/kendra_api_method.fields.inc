@@ -1,5 +1,12 @@
 <?php
 
+function computed_field_get_noderef_referenced_title ($nid = 0) {
+	$node = node_load($nid);
+	$node = node_build_content($node);
+	$value = $node->title;
+	return $value;
+}
+
 /**
  * computed field : rest_request : compute
 
@@ -22,16 +29,18 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 
     if ($method == 'GET') {
     	foreach($node->field_method_params as $i => $param) {
-    		// var_dump($param);
-    		$data[] = urlencode($param['value'] . '=' . next($placeholders));
+    		$nid = $param['value'];
+    		$value = computed_field_get_noderef_referenced_title($nid);
+    		$data[] = urlencode($value . '=' . next($placeholders));
     	}
 
     	$url .= join('&', $data);
 
     } else if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
     	foreach($node->field_method_params as $i => $param) {
-    		// var_dump($param);
-    		$data[] = urlencode($param['value'] . '=' . next($placeholders));
+    		$nid = $param['value'];
+    		$value = computed_field_get_noderef_referenced_title($nid);
+    		$data[] = urlencode($value . '=' . next($placeholders));
     	}
 
     	if (!empty($data)) {
@@ -57,8 +66,9 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 	$placeholders = array('foo','bar','baz','qux');
 
 	foreach($node->field_method_params as $i => $param) {
-		//var_dump($node->field_method_params[i]);
-		$data[] = $node->field_method_params[i]['value'] . '=' . next($placeholders);
+		$nid = $node->field_method_params[i]['value'];
+		$value = computed_field_get_noderef_referenced_title($nid);
+		$data[] = $value . '=' . next($placeholders);
 	}
 
 	$url .= join('&',
