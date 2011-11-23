@@ -18,12 +18,12 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     ,'-H "Content-Type: application/json"'
     ,'-X ' . $method
     );
-	$placeholders = array('foo','bar','baz','qux');
+    $placeholders = array('foo','bar','baz','qux');
 
     if ($method == 'GET') {
     	foreach($node->field_method_params as $i => $param) {
     		// var_dump($param);
-	  $data[] = urlencode($param['value'] . '=' . next($placeholders));
+    		$data[] = urlencode($param['value'] . '=' . next($placeholders));
     	}
 
     	$url .= join('&', $data);
@@ -31,7 +31,7 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     } else if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
     	foreach($node->field_method_params as $i => $param) {
     		// var_dump($param);
-	  $data[] = urlencode($param['value'] . '=' . next($placeholders));
+    		$data[] = urlencode($param['value'] . '=' . next($placeholders));
     	}
 
     	if (!empty($data)) {
@@ -58,7 +58,7 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 
 	foreach($node->field_method_params as $i => $param) {
 		//var_dump($node->field_method_params[i]);
-	  $data[] = $node->field_method_params[i]['value'] . '=' . next($placeholders);
+		$data[] = $node->field_method_params[i]['value'] . '=' . next($placeholders);
 	}
 
 	$url .= join('&',
