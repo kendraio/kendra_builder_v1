@@ -39,7 +39,8 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		if (!empty($value)) {
-    			$data[] = urlencode($value . '=' . current($placeholders));
+    			$safe_value = preg_replace('/[^\w]/', '_', $value);
+    			$data[] = $safe_value . '=' . current($placeholders);
     			next($placeholders);
     		}
     	}
@@ -52,7 +53,8 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		if (!empty($value)) {
-    			$data[] = urlencode($value . '=' . current($placeholders));
+    			$safe_value = preg_replace('/[^\w]/', '_', $value);
+    			$data[] = $safe_value . '=' . current($placeholders);
     			next($placeholders);
     		}
     	}
@@ -85,7 +87,8 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 		//watchdog('CF:test_url', '<pre>'. print_r($nid, TRUE) .'</pre>');
 		$value = computed_field_get_noderef_referenced_title($nid);
 		if (!empty($value)) {
-			$data[] = $value . '=' . current($placeholders);
+			$safe_value = preg_replace('/[^\w]/', '_', $value);
+			$data[] = $safe_value . '=' . current($placeholders);
 			next($placeholders);
 		}
 	}
