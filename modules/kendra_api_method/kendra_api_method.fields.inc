@@ -79,6 +79,7 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
  */
 function computed_field_field_rest_request_computed_display($field, $element, $node) {
 	$display = $node_field_item['value'];
+	return $display;
 }
 
 /**
@@ -90,5 +91,6 @@ function computed_field_field_rest_request_computed_display($field, $element, $n
 function computed_field_field_test_url_computed_display($field, $element, $node) {
 	$url = $node_field_item['value'];
 	$display = l($url,$url);
+	return $display;
 }
 
