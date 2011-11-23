@@ -100,7 +100,7 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
  * @param $node_field
  */
 function computed_field_field_test_url_computed_compute(&$node, $field, &$node_field) {
-	$url = KENDRA_API_ENDPOINT_BASE . '?';
+	$url = KENDRA_API_ENDPOINT_BASE_WEB . '?';
 	$url_path_prefix = KENDRA_API_ENDPOINT_PATH_PREFIX;
 	$data = array();
 	$placeholders = array('foo','bar','baz','qux');
