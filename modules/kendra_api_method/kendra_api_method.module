@@ -1,7 +1,7 @@
 <?php
 
-define('KENDRA_API_ENDPOINT_BASE', 'http://trial.saracen.kendra.org/kendra-api-test');
-define('KENDRA_API_ENDPOINT_PATH_PREFIX', 'saracen/0.1');
+define('KENDRA_API_ENDPOINT_BASE', 'http://api.kendra.org/kendra-api-test');
+define('KENDRA_API_ENDPOINT_PATH_PREFIX', '/saracen/0.1');
 
 include_once('kendra_api_method.features.inc');
 include_once('kendra_api_method.fields.inc');
