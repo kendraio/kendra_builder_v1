@@ -81,6 +81,13 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     	if (!empty($data)) {
     		$my_tokens[] = sprintf('--data "%s"', join('&', $data));
     	}
+
+    	$payload = $node->field_rest_request_payload[0]['nid'];
+    	if (!empty($payload)) {
+    		$payload = computed_field_get_noderef_referenced_fields($nid, array('title', 'type'));
+    		$safe_title = kendra_api_method_get_safe_param_example($payload['title']);
+    		$my_tokens[] = sprintf('--data "\'{%s}\'"', $safe_title);
+    	}
     }
 
     $my_tokens[] = $url;
