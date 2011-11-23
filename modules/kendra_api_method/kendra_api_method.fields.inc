@@ -115,16 +115,15 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 			next($placeholders);
 		}
 	}
-}
 
-$url .= join('&',
-array(
+	$url .= join('&',
+	array(
         'endpoint_method='.$node->field_rest_http_method[0]['value']
-,'endpoint_path=' . $url_path_prefix . $node->field_rest_uri_fragment[0]['value']
-,'endpoint_data=' . urlencode(join('&', $data))
-));
+	,'endpoint_path=' . $url_path_prefix . $node->field_rest_uri_fragment[0]['value']
+	,'endpoint_data=' . urlencode(join('&', $data))
+	));
 
-$node_field[0]['value'] = $url;
+	$node_field[0]['value'] = $url;
 }
 
 /**
