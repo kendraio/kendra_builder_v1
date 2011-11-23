@@ -6,6 +6,7 @@
  * @return String title
  */
 function computed_field_get_noderef_referenced_title ($nid = 0) {
+	watchdog('computed_field_get_noderef_referenced_title', '<pre>'. print_r($nid, TRUE) .'</pre>');
 	$node = node_load($nid);
 	$node = node_build_content($node);
 	$value = $node->title;
@@ -31,9 +32,11 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     ,'-X ' . $method
     );
     $placeholders = array('foo','bar','baz','qux');
-
+    reset($placeholders);
+    
     if ($method == 'GET') {
     	foreach($node->field_method_params as $i => $param) {
+    		watchdog('computed_field_field_rest_request_computed_compute', '<pre>'. print_r($param, TRUE) .'</pre>');
     		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		$data[] = urlencode($value . '=' . next($placeholders));
@@ -43,6 +46,7 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 
     } else if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
     	foreach($node->field_method_params as $i => $param) {
+    		watchdog('computed_field_field_rest_request_computed_compute', '<pre>'. print_r($param, TRUE) .'</pre>');
     		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		$data[] = urlencode($value . '=' . next($placeholders));
@@ -69,7 +73,8 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 	$url_path_prefix = KENDRA_API_ENDPOINT_PATH_PREFIX;
 	$data = array();
 	$placeholders = array('foo','bar','baz','qux');
-
+    reset($placeholders);
+	
 	foreach($node->field_method_params as $i => $param) {
 		$nid = $node->field_method_params[i]['nid'];
 		$value = computed_field_get_noderef_referenced_title($nid);
