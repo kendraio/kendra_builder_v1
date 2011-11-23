@@ -11,9 +11,7 @@ function computed_field_get_noderef_referenced_fields ($nid = 0, $fields = array
 
 	$out = array();
 	foreach($fields as $fieldname) {
-		if (property_exists($node, $fieldname)) {
-			$out[$fieldname] = $node->{$fieldname};
-		}
+		$out[$fieldname] = $node->{$fieldname};
 	}
 	return $out;
 }
