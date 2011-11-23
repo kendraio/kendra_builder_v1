@@ -77,7 +77,7 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 	reset($placeholders);
 
 	foreach($node->field_method_params as $i => $param) {
-		$nid = $node->field_method_params[i]['nid'];
+		$nid = $node->field_method_params[$i]['nid'];
 		watchdog('CF:test_url', '<pre>'. print_r($nid, TRUE) .'</pre>');
 		$value = computed_field_get_noderef_referenced_title($nid);
 		$data[] = $value . '=' . current($placeholders);
