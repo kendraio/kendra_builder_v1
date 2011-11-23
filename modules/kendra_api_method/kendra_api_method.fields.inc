@@ -6,9 +6,9 @@
  * @return String title
  */
 function computed_field_get_noderef_referenced_title ($nid = 0) {
-	watchdog('computed_field_get_noderef_referenced_title', '<pre>'. print_r($nid, TRUE) .'</pre>');
 	$node = node_load($nid);
 	$node = node_build_content($node);
+	watchdog('CF:get_noderef_referenced_title', '<pre>'. print_r($node, TRUE) .'</pre>');
 	$value = $node->title;
 	return $value;
 }
@@ -36,7 +36,7 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     
     if ($method == 'GET') {
     	foreach($node->field_method_params as $i => $param) {
-    		watchdog('computed_field_field_rest_request_computed_compute', '<pre>'. print_r($param, TRUE) .'</pre>');
+    		watchdog('CF:rest_request_computed_compute', '<pre>'. print_r($param, TRUE) .'</pre>');
     		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		$data[] = urlencode($value . '=' . next($placeholders));
@@ -46,7 +46,7 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 
     } else if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
     	foreach($node->field_method_params as $i => $param) {
-    		watchdog('computed_field_field_rest_request_computed_compute', '<pre>'. print_r($param, TRUE) .'</pre>');
+    		watchdog('CF:rest_request_computed_compute', '<pre>'. print_r($param, TRUE) .'</pre>');
     		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		$data[] = urlencode($value . '=' . next($placeholders));
