@@ -12,6 +12,11 @@ function computed_field_get_noderef_referenced_title ($nid = 0) {
 	return $value;
 }
 
+function kendra_api_method_get_safe_param_example ($label = 'foo') {
+	$safe_name = preg_replace('/[^\w]/', '_', $label);
+	return $safe_name;
+}
+
 /**
  * computed field : rest_request : compute
 
@@ -35,12 +40,12 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 
     if ($method == 'GET') {
     	foreach($node->field_method_params as $i => $param) {
-    		//watchdog('CF:rest_request', '<pre>'. print_r($param, TRUE) .'</pre>');
+    		watchdog('CF:rest_request', '<pre>'. print_r($param, TRUE) .'</pre>');
     		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		if (!empty($value)) {
-    			$safe_value = preg_replace('/[^\w]/', '_', $value);
-    			$data[] = $safe_value . '=' . current($placeholders);
+    			$safe_name = kendra_api_method_get_safe_param_example($value);
+    			$data[] = $safe_name . '=' . current($placeholders);
     			next($placeholders);
     		}
     	}
@@ -49,12 +54,12 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 
     } else if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
     	foreach($node->field_method_params as $i => $param) {
-    		//watchdog('CF:rest_request', '<pre>'. print_r($param, TRUE) .'</pre>');
+    		watchdog('CF:rest_request', '<pre>'. print_r($param, TRUE) .'</pre>');
     		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		if (!empty($value)) {
-    			$safe_value = preg_replace('/[^\w]/', '_', $value);
-    			$data[] = $safe_value . '=' . current($placeholders);
+    			$safe_name = kendra_api_method_get_safe_param_example($value);
+    			$data[] = $safe_name . '=' . current($placeholders);
     			next($placeholders);
     		}
     	}
@@ -87,8 +92,8 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 		//watchdog('CF:test_url', '<pre>'. print_r($nid, TRUE) .'</pre>');
 		$value = computed_field_get_noderef_referenced_title($nid);
 		if (!empty($value)) {
-			$safe_value = preg_replace('/[^\w]/', '_', $value);
-			$data[] = $safe_value . '=' . current($placeholders);
+			$safe_name = kendra_api_method_get_safe_param_example($value);
+			$data[] = $safe_name . '=' . current($placeholders);
 			next($placeholders);
 		}
 	}
