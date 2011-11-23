@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * given a node ID, get the title of a referenced node
+ * @param INT $nid
+ * @return String title
+ */
 function computed_field_get_noderef_referenced_title ($nid = 0) {
 	$node = node_load($nid);
 	$node = node_build_content($node);
