@@ -34,7 +34,7 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 
     if ($method == 'GET') {
     	foreach($node->field_method_params as $i => $param) {
-    		$nid = $param['value'];
+    		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		$data[] = urlencode($value . '=' . next($placeholders));
     	}
@@ -43,7 +43,7 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 
     } else if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
     	foreach($node->field_method_params as $i => $param) {
-    		$nid = $param['value'];
+    		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		$data[] = urlencode($value . '=' . next($placeholders));
     	}
@@ -71,7 +71,7 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 	$placeholders = array('foo','bar','baz','qux');
 
 	foreach($node->field_method_params as $i => $param) {
-		$nid = $node->field_method_params[i]['value'];
+		$nid = $node->field_method_params[i]['nid'];
 		$value = computed_field_get_noderef_referenced_title($nid);
 		$data[] = $value . '=' . next($placeholders);
 	}
