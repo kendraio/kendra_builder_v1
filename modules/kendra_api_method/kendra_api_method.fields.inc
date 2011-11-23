@@ -7,7 +7,6 @@
  */
 function computed_field_get_noderef_referenced_title ($nid = 0) {
 	$node = node_load($nid);
-	$node = node_build_content($node);
 	watchdog('CF:get_noderef_referenced_title', '<pre>'. print_r($node, TRUE) .'</pre>');
 	$value = $node->title;
 	return $value;
