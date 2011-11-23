@@ -8,7 +8,7 @@
 function computed_field_get_noderef_referenced_title ($nid = 0) {
 	$node = node_load($nid);
 	$value = $node->title;
-	//watchdog('CF:get_noderef_referenced_title', 'title='. $value .'</pre>');
+	watchdog('CF:get_noderef_referenced_title', 'title='. $value .'</pre>');
 	return $value;
 }
 
@@ -40,7 +40,6 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 
     if ($method == 'GET') {
     	foreach($node->field_method_params as $i => $param) {
-    		watchdog('CF:rest_request', '<pre>'. print_r($param, TRUE) .'</pre>');
     		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		if (!empty($value)) {
@@ -54,7 +53,6 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 
     } else if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
     	foreach($node->field_method_params as $i => $param) {
-    		watchdog('CF:rest_request', '<pre>'. print_r($param, TRUE) .'</pre>');
     		$nid = $param['nid'];
     		$value = computed_field_get_noderef_referenced_title($nid);
     		if (!empty($value)) {
@@ -89,7 +87,6 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 
 	foreach($node->field_method_params as $i => $param) {
 		$nid = $node->field_method_params[$i]['nid'];
-		//watchdog('CF:test_url', '<pre>'. print_r($nid, TRUE) .'</pre>');
 		$value = computed_field_get_noderef_referenced_title($nid);
 		if (!empty($value)) {
 			$safe_name = kendra_api_method_get_safe_param_example($value);
