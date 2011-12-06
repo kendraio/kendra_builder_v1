@@ -16,7 +16,9 @@ function kendra_api_method_menu() {
 	// Generate different textfields based on form state.
 	$items['methods.smd'] = array(
     'title' => 'SMD',
-	    'page callback' => 'kendra_api_method_get_smd'
+	    'page callback' => 'kendra_api_method_get_smd',
+    'access callback' => 'user_access',
+    'access arguments' => array('edit any method content'),
 	    );
 
 	    return $items;
