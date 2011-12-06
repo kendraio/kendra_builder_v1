@@ -167,7 +167,41 @@ function kendra_api_method_resources_to_services(&$resources) {
  *
  */
 function kendra_api_method_methods_to_smd($methods) {
-	$resources = $methods; // debugging
+	$default_params = array(
+		"SMDVersion" => "2.0",
+		"description" => "Kendra API",
+		"id" => KENDRA_API_ENDPOINT_BASE, 
+		"target" => KENDRA_API_ENDPOINT_BASE . KENDRA_API_ENDPOINT_PATH_PREFIX,
+		"envelope" => "URL",
+		"transport" => "JSONP",
+		"callbackParamName" => "callback",
+		"parameters" => array(
+	array( "name" => "api_key", "optional" => true, "default" => "" ),
+	array( "name" => "format", "optional" => false, "default" => "json" )
+	),
+		"additionalParameters" => true,
+		"services" => array()
+	);
+	$resources = $default_params;
+
+	foreach($methods as $resource_root => $methodlist) {
+		foreach($methodlist as $method) {
+			$resource_name = array_shift($method['path_fragment']);
+			if (!empty($resource_name)) {
+				$key = strtolower($resource_name) . ucfirst($resource_root);
+			} else {
+				$crud_method = http_method_to_crud_method($method['http_method']);
+				$key = strtolower($crud_method) . ucfirst($resource_root);
+			}
+
+			$resources['services'][$key] = array(
+				'target' => KENDRA_API_ENDPOINT_BASE . KENDRA_API_ENDPOINT_PATH_PREFIX . $method['path_fragment'],
+				'description' => $method['help'],
+				'parameters' => array()
+			);
+		}
+	}
+
 	return $resources;
 }
 
