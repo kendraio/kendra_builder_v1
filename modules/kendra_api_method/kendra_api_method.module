@@ -19,7 +19,7 @@ function kendra_api_method_menu() {
 	    'page callback' => 'kendra_api_method_get_smd',
     'access callback' => 'user_access',
     'access arguments' => array('edit any method content'),
-	    );
+	);
 
 	// output Services resource definitions
 	$items['methods.services'] = array(
@@ -27,7 +27,7 @@ function kendra_api_method_menu() {
 	    'page callback' => 'kendra_api_method_get_services',
     'access callback' => 'user_access',
     'access arguments' => array('edit any method content'),
-	    );
+	);
 
 	return $items;
 }
@@ -36,13 +36,13 @@ function kendra_api_method_menu() {
  * output Services format method descriptions
  */
 function kendra_api_method_get_services() {
-  drupal_set_header('Content-Type: application/json; charset=utf-8');
+	drupal_set_header('Content-Type: application/json; charset=utf-8');
 
-  $methods = kendra_api_method_get_methods();
-  $resources = kendra_api_method_methods_to_resources($methods);
-  kendra_api_method_resources_to_services($resources);
-  
-  return drupal_json($resources);
+	$methods = kendra_api_method_get_methods();
+	$resources = kendra_api_method_methods_to_resources($methods);
+	kendra_api_method_resources_to_services($resources);
+
+	return drupal_json($resources);
 }
 
 /**
@@ -51,12 +51,12 @@ function kendra_api_method_get_services() {
  * see: http://ceit.uq.edu.au/content/standard-definition-restful-interfaces-and-their-descriptions
  */
 function kendra_api_method_get_smd() {
-  drupal_set_header('Content-Type: application/json; charset=utf-8');
+	drupal_set_header('Content-Type: application/json; charset=utf-8');
 
-  $methods = kendra_api_method_get_methods();
-  $resources = kendra_api_method_methods_to_smd($methods);
-  
-  return drupal_json($resources);
+	$methods = kendra_api_method_get_methods();
+	$resources = kendra_api_method_methods_to_smd($methods);
+
+	return drupal_json($resources);
 }
 
 /**
@@ -83,7 +83,7 @@ ORDER BY path_fragment
 		$resource_root = array_shift($path_fragment);
 		if (empty($resource_root)) $resource_root = array_shift($path_fragment); // remove leading slash
 		if (!empty($resource_root)) {
-		  $methods[$resource_root][] = $row;
+			$methods[$resource_root][] = $row;
 		}
 	}
 
@@ -97,15 +97,15 @@ function kendra_api_method_methods_to_resources($methods) {
 	$resources = array();
 
 	foreach($methods as $resource_root => $methodlist) {
-	  foreach($methodlist as $method) {
-	    $resource_name = array_shift($method['path_fragment']);
-	    if (!empty($resource_name)) {
-	      $resources[$resource_root]['actions'][$resource_name] = array('help' => $method['help']);
-	    } else {
-	      $crud_method = http_method_to_crud_method($method['http_method']);
-	      $resources[$resource_root]['operations'][$crud_method] = array('help' => $method['help']);
-	    }
-	  }
+		foreach($methodlist as $method) {
+			$resource_name = array_shift($method['path_fragment']);
+			if (!empty($resource_name)) {
+				$resources[$resource_root]['actions'][$resource_name] = array('help' => $method['help']);
+			} else {
+				$crud_method = http_method_to_crud_method($method['http_method']);
+				$resources[$resource_root]['operations'][$crud_method] = array('help' => $method['help']);
+			}
+		}
 	}
 
 	return $resources;
@@ -145,7 +145,7 @@ function kendra_api_method_resources_to_services(&$resources) {
 						'file' => array('type' => 'inc', 'module' => 'kendra_social_services', 'name' => 'kendra_social_services.callbacks'),
 					);
 					watchdog('KAPI', "[$res_name][$key][$controller_name]");
-		  
+
 					$resources[$res_name][$key][$controller_name] = array_merge($controller_defaults, $controller, $default_callbacks);
 				}
 
@@ -158,7 +158,7 @@ function kendra_api_method_resources_to_services(&$resources) {
 
 		// peculiarity of Services: $operations is attached at two points
 		if (!empty($resources['operations'])) {
-		  $resources[$res_name] = array_merge($resources[$res_name], $res['operations']);
+			$resources[$res_name] = array_merge($resources[$res_name], $res['operations']);
 		}
 	}
 }
@@ -167,8 +167,8 @@ function kendra_api_method_resources_to_services(&$resources) {
  *
  */
 function kendra_api_method_methods_to_smd($methods) {
-  $resources = $methods; // debugging
-  return $resources;
+	$resources = $methods; // debugging
+	return $resources;
 }
 
 /**
