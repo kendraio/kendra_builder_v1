@@ -18,6 +18,7 @@ function computed_field_get_noderef_referenced_fields ($nid = 0, $fields = array
 
 function kendra_api_method_get_safe_param_example ($label = 'foo') {
 	$safe_title = preg_replace('/[^\w]/', '_', $label);
+	$safe_title = mb_strtolower($safe_title);
 	return $safe_title;
 }
 
@@ -150,6 +151,6 @@ function computed_field_field_rest_request_computed_display($field, $element, $n
  */
 function computed_field_field_test_url_computed_display($field, $element, $node) {
 	$url = $element['#item']['value'];
-	$display = l($url,$url);
+	$display = l($url,$url, array('attributes'=>array('target'=>'_top')));
 	return $display;
 }
