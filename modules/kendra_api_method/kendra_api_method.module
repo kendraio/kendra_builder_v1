@@ -108,6 +108,7 @@ ORDER BY path_fragment
 
 		$path_fragment = explode('/', $row->path_fragment);
 		$resource_root = array_shift($path_fragment);
+		if (empty($resource_root)) $resource_root = array_shift($path_fragment); // remove leading slash
 		if (!empty($resource_root)) {
 			$resource_name = array_shift($path_fragment);
 			if (!empty($resource_name)) {
