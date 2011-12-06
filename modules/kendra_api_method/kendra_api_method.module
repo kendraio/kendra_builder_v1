@@ -98,7 +98,10 @@ function kendra_api_method_methods_to_resources($methods) {
 
 	foreach($methods as $resource_root => $methodlist) {
 		foreach($methodlist as $method) {
-			$resource_name = array_shift($method['path_fragment']);
+			$path_fragment = explode('/', $method['path_fragment']);
+			$resource_root = array_shift($path_fragment);
+			if (empty($resource_root)) $resource_root = array_shift($path_fragment); // remove leading slash
+			$resource_name = array_shift($path_fragment);
 			if (!empty($resource_name)) {
 				$resources[$resource_root]['actions'][$resource_name] = array('help' => $method['help']);
 			} else {
