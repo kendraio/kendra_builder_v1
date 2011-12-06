@@ -100,10 +100,10 @@ function kendra_api_method_methods_to_resources($methods) {
 	  foreach($methodlist as $method) {
 	    $resource_name = array_shift($method['path_fragment']);
 	    if (!empty($resource_name)) {
-	      $resources[$resource_root]['actions'][$resource_name] = array('help'=>$row->help);
+	      $resources[$resource_root]['actions'][$resource_name] = array('help' => $method['help']);
 	    } else {
-	      $crud_method = http_method_to_crud_method($row->http_method);
-	      $resources[$resource_root]['operations'][$crud_method] = array('help'=>$row->help);
+	      $crud_method = http_method_to_crud_method($method['http_method']);
+	      $resources[$resource_root]['operations'][$crud_method] = array('help' => $method['help']);
 	    }
 	  }
 	}
