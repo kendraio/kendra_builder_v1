@@ -160,7 +160,7 @@ function kendra_api_method_resources_to_services(&$resources) {
 		}
 
 		// peculiarity of Services: $operations is attached at two points
-		if (!empty($resources['operations'])) {
+		if (!empty($res['operations'])) {
 			$resources[$res_name] = array_merge($resources[$res_name], $res['operations']);
 		}
 	}
