@@ -150,6 +150,7 @@ function kendra_api_method_resources_to_services(&$resources) {
 					watchdog('KAPI', "[$res_name][$key][$controller_name]");
 
 					$resources[$res_name][$key][$controller_name] = array_merge($controller_defaults, $controller, $default_callbacks);
+					
 				}
 
 			} else if ($key == 'relationships') {
@@ -161,7 +162,7 @@ function kendra_api_method_resources_to_services(&$resources) {
 
 		// peculiarity of Services: $operations is attached at two points
 		if (!empty($res['operations'])) {
-			$resources[$res_name] = array_merge($resources[$res_name], $res['operations']);
+			$resources[$res_name] = array_merge($resources[$res_name], $resources[$res_name]['operations']);
 		}
 	}
 }
