@@ -134,35 +134,75 @@ function kendra_api_method_resources_to_services(&$resources) {
 		'enabled' => 1,
 	);
 
+	/**
+	 * services core resources
+	 * as defined in services/servers/services.resource_build.inc
+	 */
+	$core_resources = array(
+	'comment',
+	'file',
+	'node',
+	'system',
+	'taxonomy',
+	'user',
+	);
+
 	foreach($resources as $res_name => $res) {
-		$resources[$res_name] = array_merge($defaults, $res);
-
-		foreach($res as $key => $resource) {
-			if ($key == 'operations' || $key == 'actions') {
-				// override any callbacks, for security
-				foreach($resource as $controller_name => $controller) {
-					$callback_name = sprintf('_kss_%s_%s', strtolower($res_name), strtolower($controller_name));
-					$default_callbacks = array(
-						'callback' => $callback_name,
-						'access callback' => $callback_name . '_access',
-						'file' => array('type' => 'inc', 'module' => 'kendra_social_services', 'name' => 'kendra_social_services.callbacks'),
-					);
-					watchdog('KAPI', "[$res_name][$key][$controller_name]");
-
-					$resources[$res_name][$key][$controller_name] = array_merge($controller_defaults, $controller, $default_callbacks);
-					
+		if (in_array($res_name, $core_resources)) {
+			/**
+			 * do not redefine services core resources
+			 * instead, just enable them
+			 */
+			foreach($res as $key => $resource) {
+				$defaults = array('enabled' => 1);
+				
+				switch ($key) {
+					case 'operations':
+					case 'actions':
+						foreach($resource as $controller_name => $controller) {
+							$resources[$res_name][$key][$controller_name] = array_merge($defaults, $controller);
+						}
+						break;
 				}
-
-			} else if ($key == 'relationships') {
-				// @todo // ensure valid relationships
-			} else {
-				// @todo // should we unset the resource?
 			}
-		}
+		} else {
+			/**
+			 * merge
+			 * @var unknown_type
+			 */
+			$resources[$res_name] = array_merge($defaults, $res);
 
-		// peculiarity of Services: $operations is attached at two points
-		if (!empty($res['operations'])) {
-			$resources[$res_name] = array_merge($resources[$res_name], $resources[$res_name]['operations']);
+			foreach($res as $key => $resource) {
+				switch ($key) {
+					case 'operations':
+					case 'actions':
+						// override any callbacks, for security
+						foreach($resource as $controller_name => $controller) {
+							$callback_name = sprintf('_kss_%s_%s', strtolower($res_name), strtolower($controller_name));
+							$default_callbacks = array(
+							'callback' => $callback_name,
+							'access callback' => $callback_name . '_access',
+							'file' => array('type' => 'inc', 'module' => 'kendra_social_services', 'name' => 'kendra_social_services.callbacks'),
+							);
+							watchdog('KAPI', "[$res_name][$key][$controller_name]");
+
+							$resources[$res_name][$key][$controller_name] = array_merge($controller_defaults, $controller, $default_callbacks);
+
+						}
+						break;
+							
+					case 'relationships':
+						// @todo // ensure valid relationships
+						break;
+					default:
+						// @todo // should we unset the resource?
+				}
+			}
+
+			// peculiarity of Services: $operations is attached at two points
+			if (!empty($res['operations'])) {
+				$resources[$res_name] = array_merge($resources[$res_name], $resources[$res_name]['operations']);
+			}
 		}
 	}
 }
