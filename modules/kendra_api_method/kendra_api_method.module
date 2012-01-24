@@ -92,10 +92,10 @@ ORDER BY path_fragment
 
 /**
  * translate API-specific methods into service resource format
- * 
+ *
  * note: this is a bit of hack, as it expects methods to be named in the format:
  * $resource_name [ / $action_name ]
- * 
+ *
  * @todo generalize
  */
 function kendra_api_method_methods_to_resources($methods) {
@@ -106,12 +106,13 @@ function kendra_api_method_methods_to_resources($methods) {
 			$path_fragment = explode('/', $method['path_fragment']);
 			$resource_root = array_shift($path_fragment);
 			if (empty($resource_root)) $resource_root = array_shift($path_fragment); // remove leading slash
+
+			$parameter_count = count($path_fragment);
 			$resource_name = array_shift($path_fragment);
-			
+				
 			if (!empty($resource_name) && strncmp($resource_name, '%', 1) != 0) {
 				$resources[$resource_root]['actions'][$resource_name] = array('help' => $method['help']);
 			} else {
-				$parameter_count = count($path_fragment);
 				$crud_method = http_method_to_crud_method($method['http_method'], $parameter_count);
 				$resources[$resource_root]['operations'][$crud_method] = array('help' => $method['help']);
 			}
