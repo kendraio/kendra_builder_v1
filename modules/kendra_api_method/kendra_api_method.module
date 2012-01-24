@@ -105,7 +105,8 @@ function kendra_api_method_methods_to_resources($methods) {
 			if (!empty($resource_name)) {
 				$resources[$resource_root]['actions'][$resource_name] = array('help' => $method['help']);
 			} else {
-				$crud_method = http_method_to_crud_method($method['http_method']);
+				$parameter_count = count($path_fragment);
+				$crud_method = http_method_to_crud_method($method['http_method'], $parameter_count);
 				$resources[$resource_root]['operations'][$crud_method] = array('help' => $method['help']);
 			}
 		}
@@ -179,7 +180,7 @@ function kendra_api_method_resources_to_services(&$resources) {
 						// override any callbacks, for security
 						foreach($resource as $controller_name => $controller) {
 							$callback_name = sprintf('_kss_%s_%s', strtolower($res_name), strtolower($controller_name));
-								
+
 							$default_callbacks = array(
 							'callback' => $callback_name,
 							'access callback' => $callback_name . '_access',
@@ -188,12 +189,12 @@ function kendra_api_method_resources_to_services(&$resources) {
 							    'module'=> 'kendra_social_services', 
 							    'name'=>'kendra_social_services.callbacks', 
 							    'type'=>'inc'
-								),
-							);
-								
-							watchdog('KAPI', "[$res_name][$key][$controller_name]");
+							    ),
+							    );
 
-							$resources[$res_name][$key][$controller_name] = array_merge($controller_defaults, $controller, $default_callbacks);
+							    watchdog('KAPI', "[$res_name][$key][$controller_name]");
+
+							    $resources[$res_name][$key][$controller_name] = array_merge($controller_defaults, $controller, $default_callbacks);
 
 						}
 						break;
@@ -241,6 +242,7 @@ function kendra_api_method_methods_to_smd($methods) {
 			if (!empty($resource_name)) {
 				$key = strtolower($resource_name) . ucfirst($resource_root);
 			} else {
+				// @todo distinguish between 'index' and 'retrieve' ?
 				$crud_method = http_method_to_crud_method($method['http_method']);
 				$key = strtolower($crud_method) . ucfirst($resource_root);
 			}
@@ -262,10 +264,11 @@ function kendra_api_method_methods_to_smd($methods) {
  *
  * @param string $method_name
  */
-function http_method_to_crud_method($method_name = '') {
+function http_method_to_crud_method($method_name = '', $parameter_count = 0) {
 	switch (strtoupper($method_name)) {
 		case 'GET':
-			return 'retrieve';
+			if ($parameter_count > 0) return 'retrieve';
+			return 'index';
 			break;
 		case 'POST':
 			return 'create';
