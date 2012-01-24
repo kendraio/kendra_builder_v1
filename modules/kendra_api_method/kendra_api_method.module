@@ -155,7 +155,7 @@ function kendra_api_method_resources_to_services(&$resources) {
 			 */
 			foreach($res as $key => $resource) {
 				$defaults = array('enabled' => 1);
-				
+
 				switch ($key) {
 					case 'operations':
 					case 'actions':
@@ -179,11 +179,18 @@ function kendra_api_method_resources_to_services(&$resources) {
 						// override any callbacks, for security
 						foreach($resource as $controller_name => $controller) {
 							$callback_name = sprintf('_kss_%s_%s', strtolower($res_name), strtolower($controller_name));
+								
 							$default_callbacks = array(
 							'callback' => $callback_name,
 							'access callback' => $callback_name . '_access',
 							'file' => array('type' => 'inc', 'module' => 'kendra_social_services', 'name' => 'kendra_social_services.callbacks'),
+							'access callback file' => array(
+							    'module'=> 'kendra_social_services', 
+							    'name'=>'kendra_social_services.callbacks', 
+							    'type'=>'inc'
+								),
 							);
+								
 							watchdog('KAPI', "[$res_name][$key][$controller_name]");
 
 							$resources[$res_name][$key][$controller_name] = array_merge($controller_defaults, $controller, $default_callbacks);
