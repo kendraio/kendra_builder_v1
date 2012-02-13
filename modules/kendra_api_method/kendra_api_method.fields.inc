@@ -59,7 +59,7 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     		}
     	}
 
-    	$url .= join('&', $data);
+    	$url .= '?' . join('&', $data);
 
     } else if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
     	foreach($node->field_method_params as $i => $param) {
