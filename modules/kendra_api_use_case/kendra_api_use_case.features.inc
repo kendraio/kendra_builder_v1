@@ -56,6 +56,9 @@ function kendra_api_use_case_node_info() {
  * Implementation of hook_views_api().
  */
 function kendra_api_use_case_views_api() {
+    drupal_add_js(drupal_get_path('module', 'kendra_api_use_case') .'/kendra_api_use_case.js');
+    drupal_add_css(drupal_get_path('module', 'kendra_api_use_case') .'/kendra_api_use_case.css');
+
   return array(
     'api' => '2',
   );
