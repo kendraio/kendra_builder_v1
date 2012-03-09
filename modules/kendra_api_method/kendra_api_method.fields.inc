@@ -38,10 +38,10 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     'curl'
     ,'-v'
     ,'-H "Content-Type: application/json"'
+    ,'-b cookie.txt'
+    ,'-c cookie.txt'
     ,'-X ' . $method
     );
-    $placeholders = array('foo','bar','baz','qux');
-    reset($placeholders);
 
     if ($method == 'GET') {
     	foreach($node->field_method_params as $i => $param) {
@@ -50,16 +50,15 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     		if (isset($fields['title'])) {
     			if ($fields['type'] == 'attribute') {
     				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
-    				$data[] = $safe_title . '=' . current($placeholders);
+    				$data[] = $safe_title . '=' . '$' . strtoupper($safe_title);
     			} else {
     				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
-    				$data[] = $safe_title . '=' . current($placeholders);
+    				$data[] = $safe_title . '=' . '$' . strtoupper($safe_title);
     			}
-    			next($placeholders);
     		}
     	}
 
-    	$url .= '?' . join('&', $data);
+    	if (!empty($data)) $url .= '?' . join('&', $data);
 
     } else if ($method == 'POST' || $method == 'PUT' || $method == 'DELETE') {
     	foreach($node->field_method_params as $i => $param) {
@@ -68,25 +67,25 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
     		if (isset($fields['title'])) {
     			if ($fields['type'] == 'attribute') {
     				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
-    				$data[] = $safe_title . '=' . current($placeholders);
+    				$data[] = $safe_title . '=' . '$' . strtoupper($safe_title);
     			} else {
     				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
     				$data[] = $safe_title . '=' . '{}';
     			}
-    			next($placeholders);
     		}
     	}
 
     	if (!empty($data)) {
     		$my_tokens[] = sprintf('--data "%s"', join('&', $data));
     	}
-
+	/*
     	$payload = $node->field_rest_request_payload[0]['nid'];
     	if (!empty($payload)) {
     		$payload = computed_field_get_noderef_referenced_fields($nid, array('title', 'type'));
     		$safe_title = kendra_api_method_get_safe_param_example($payload['title']);
     		$my_tokens[] = sprintf('--data "\'{%s}\'"', $safe_title);
     	}
+	*/
     }
 
     $my_tokens[] = $url;
@@ -104,8 +103,6 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 	$url = KENDRA_API_ENDPOINT_BASE_WEB . '?';
 	$url_path_prefix = KENDRA_API_ENDPOINT_PATH_PREFIX;
 	$data = array();
-	$placeholders = array('foo','bar','baz','qux');
-	reset($placeholders);
 
 	foreach($node->field_method_params as $i => $param) {
 		$nid = $node->field_method_params[$i]['nid'];
@@ -113,12 +110,11 @@ function computed_field_field_test_url_computed_compute(&$node, $field, &$node_f
 		if (isset($fields['title'])) {
 			if ($fields['type'] == 'attribute') {
 				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
-				$data[] = $safe_title . '=' . current($placeholders);
+				$data[] = $safe_title . '=' . '$' . strtoupper($safe_title);
 			} else {
 				$safe_title = kendra_api_method_get_safe_param_example($fields['title']);
 				$data[] = $safe_title . '=' . '{}';
 			}
-			next($placeholders);
 		}
 	}
 
