@@ -37,7 +37,8 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 	$my_tokens = array(
     'curl'
     ,'-v'
-    ,'-H "Content-Type: application/json"'
+    //,'-H "Content-Type: application/json"'
+    ,'-H "Content-Type: application/x-www-form-urlencoded"'
     ,'-b cookie.txt'
     ,'-c cookie.txt'
     ,'-X ' . $method
