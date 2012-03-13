@@ -89,7 +89,7 @@ function computed_field_field_rest_request_computed_compute(&$node, $field, &$no
 	*/
     }
 
-    $my_tokens[] = $url;
+    $my_tokens[] = '"' . $url . '"';
     $node_field[0]['value'] = join(' ', $my_tokens);
 }
 
