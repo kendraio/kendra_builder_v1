@@ -10,7 +10,7 @@ Kendra API Builder also allows for collaborative design between different partic
 
 A first draft of a proposal to standardise the JSON Schema and ancillary technologies necessary for use with Kendra API Builder is in progress. Kendra plans to release a formal description of the JSON Schema or similar meta-description format, including declarations of message semantics and examples of usage.
 
-Kendra API Builder is free software developed by Kendra Foundation in collaboration with SARACEN and co-funded by the European Union. Sample code and the validation tool will be released under the GNU General Public License. Additionally, Kendra will Creative Commons license all of the API documentation, so users will be welcome to reuse and remix as appropriate.
+Kendra API Builder is free software developed by Kendra Foundation in collaboration with SARACEN and co-funded by the European Union under the Seventh Framework programme. Sample code and the validation tool will be released under the GNU General Public License. Additionally, Kendra will Creative Commons license all of the API documentation, so users will be welcome to reuse and remix as appropriate.
 
 ## Publishing Protocol
 
