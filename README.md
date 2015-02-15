@@ -1,4 +1,4 @@
-# Kendra API Builder
+# Kendra Builder
 
 ## Overview
 
