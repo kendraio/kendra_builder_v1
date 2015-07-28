@@ -112,7 +112,7 @@ Any release of the specification contains multiple schemas which are used to rep
 
 ## Authors
 
-* Daniel Klokie Grossfeld, [Kendra Foundation](http://kendra.org.uk/)
+* Daniel Klokie Grossfeld, [Kendra Foundation](https://www.kendra.io/)
 
 ## See also
 
